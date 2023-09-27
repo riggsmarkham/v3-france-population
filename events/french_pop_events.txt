@@ -1,0 +1,263 @@
+﻿namespace = french_pop
+
+french_pop.1 = {
+	type = country_event
+	placement = root
+	title = french_pop.1.t
+	desc = french_pop.1.d
+	flavor = french_pop.1.f
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_world_fair.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/world_fair"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	duration = 3
+
+	trigger = {
+		this = c:FRA
+		NOT = { has_variable = french_pop_triggered }
+	}
+
+	option = { 
+		name = french_pop.1.a
+		every_scope_state = {
+			limit = {
+				is_incorporated = yes
+				state_region = { 
+					is_homeland = cu:french
+				}
+			}
+			add_modifier = {
+				name = french_pop_mod
+				months = -1
+			}
+		}
+		set_variable = french_pop_triggered
+		set_variable = french_pop_slowing_unnoticed
+	}
+}
+
+french_pop.2 = {
+	type = country_event
+	placement = root
+	title = french_pop.2.t
+	desc = french_pop.2.d
+	flavor = french_pop.2.f
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_world_fair.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/world_fair"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	duration = 3
+
+	trigger = {
+		has_variable = french_pop_slowing_unnoticed
+		# just lost a war and french territory
+		AND = {
+			OR = {
+				has_variable = recently_lost_war
+			}
+			any_state = {
+				state_region = { 
+					is_homeland = cu:french
+				}
+				NOT = {
+					OR = {
+						state_region = s:STATE_SAVOY
+						AND = {
+							state_region = s:STATE_PROVENCE
+							state_region = {
+								any_scope_state = {
+									owner = root
+								}
+							}
+							is_split_state = yes
+						}
+					}
+					owner = root
+				}
+			}
+		}
+	}
+
+	immediate = {
+		remove_variable = french_pop_slowing_unnoticed
+	}
+
+	option = {
+		name = french_pop.2.a
+		add_journal_entry = { type = je_french_pop }
+	}
+}
+
+french_pop.3 = {
+	type = country_event
+	placement = root
+	title = french_pop.3.t
+	desc = french_pop.3.d
+	flavor = french_pop.3.f
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_world_fair.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/world_fair"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	duration = 3
+
+	trigger = {
+		has_variable = french_pop_slowing_unnoticed
+		# smaller population than a western european rival
+		any_country = {
+			has_diplomatic_pact = {
+				who = root
+				type = rivalry
+			}
+			total_population > 1000000
+		}
+	}
+
+	immediate = {
+		remove_variable = french_pop_slowing_unnoticed
+	}
+	
+	option = {
+		name = french_pop.3.a
+		add_journal_entry = { type = je_french_pop }
+	}
+}
+
+french_pop.4 = {
+	type = country_event
+	placement = root
+	title = french_pop.4.t
+	desc = french_pop.4.d
+	flavor = french_pop.4.f
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_world_fair.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/world_fair"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	duration = 3
+
+	trigger = {
+		has_variable = french_pop_slowing_unnoticed
+		# 1 of the solution conditions
+		OR = {
+			has_law = law_type:law_no_womens_rights
+			has_law = law_type:law_state_religion
+			AND = {
+				has_law = law_type:law_religious_schools
+				has_law = law_type:law_charitable_health_system
+			}
+			has_law = law_type:law_agrarianism
+			has_law = law_type:law_traditionalism
+			ig:ig_devout = {
+				is_powerful = yes
+				is_in_government = yes
+			}
+			institution_investment_level = {
+				institution = institution_social_security
+				value >= 4
+			}
+		}
+	}
+
+	immediate = {
+		remove_variable = french_pop_slowing_unnoticed
+	}
+	
+	option = {
+		name = french_pop.4.a
+		add_journal_entry = { type = je_french_pop }
+	}
+}
+
+french_pop.5 = {
+	type = country_event
+	placement = root
+	title = french_pop.5.t
+	desc = french_pop.5.d
+	flavor = french_pop.5.f
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_world_fair.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/world_fair"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	duration = 3
+
+	trigger = {
+		NOT = { this = c:FRA }
+
+		any_scope_state = {
+			has_modifier = french_pop_mod
+		}
+	}
+	
+	option = {
+		name = french_pop.5.a
+		every_scope_state = {
+			limit = { has_modifier = french_pop_mod }
+			remove_modifier = french_pop_mod
+		}
+	}
+}
+
+french_pop.6 = {
+	type = country_event
+	placement = root
+	title = french_pop.6.t
+	desc = french_pop.6.d
+	flavor = french_pop.6.f
+	
+	event_image = {
+		video = "gfx/event_pictures/unspecific_world_fair.bk2"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	
+	on_opened_soundeffect = "event:/SFX/Events/unspecific/world_fair"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	duration = 3
+
+	trigger = {
+	}
+	
+	option = {
+		name = french_pop.6.a
+		every_scope_state = {
+			limit = { has_modifier = french_pop_mod }
+			remove_modifier = french_pop_mod
+		}
+	}
+}

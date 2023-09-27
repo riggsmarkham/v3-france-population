@@ -1,0 +1,37 @@
+﻿l_english:
+ je_french_pop: "The French Population Crisis"
+ je_french_pop_goal: "Make reforms and restore the national spirit to raise the birth rate. #bold 4#! points are required for completion. Each of the following will grant #bold 1#! point each:\n- Having [GetLawType('law_no_womens_rights').GetName]\n- Having [GetLawType('law_state_religion').GetName] or both [GetLawType('law_religious_schools').GetName] and [GetLawType('law_charitable_health_system').GetName]\n- Having [GetLawType('law_agrarianism').GetName] or [GetLawType('law_traditionalism').GetName]\n- Having the [GetInterestGroupVariant('ig_devout',GetPlayer).GetName] [concept_in_government] and [concept_powerful]\n- Having the [GetInstitutionType('institution_social_security').GetName] [concept_institution] at level 4 or above"
+ je_french_pop_reason: "The French birth rate has mysteriously fallen very low. There are a wide range of proposed to solutions to fix it, but one thing is clear - it must be fixed."
+
+ french_pop_mod: "Slow Population Growth"
+ french_pop_mod_desc: "France's population growth has mysteriously slowed..."
+
+ french_pop.1.t: "French Population Growth Slowing?"
+ french_pop.1.d: "After the tumultuous events of the early 1800s, the French birth rate has mysteriously fallen to dangerously low levels - without anyone noticing. No one knows why, and no one cares to ponder. What will it take to snap us out of our malaise?"
+ french_pop.1.a: "This is ominous..."
+ french_pop.1.f: "Placeholder 1"
+
+ french_pop.2.t: "French Population Growth - A Crisis"
+ french_pop.2.d: "After a distrastrous war, we must regain the ancient advantage of France - a large population."
+ french_pop.2.a: "This needs to be fixed as soon as possible"
+ french_pop.2.f: "Placeholder 2"
+
+ french_pop.3.t: "French Population Growth - A Crisis"
+ french_pop.3.d: "One of our rivals has passed us in population. We must reverse this trend."
+ french_pop.3.a: "This needs to be fixed as soon as possible"
+ french_pop.3.f: "Placeholder 3"
+
+ french_pop.4.t: "French Population Growth - A Crisis"
+ french_pop.4.d: "Our policies have been pushing France in the right direction. Now we must finish the job."
+ french_pop.4.a: "This needs to be fixed as soon as possible"
+ french_pop.4.f: "Placeholder 4"
+
+ french_pop.5.t: "Fertility is back"
+ french_pop.5.d: "Our newly captured territories were previously affected by that peculiar French malaise - low birth rates. But we will be able to snap them out of it in no time."
+ french_pop.5.a: "A great day!"
+ french_pop.5.f: "Placeholder 5"
+
+ french_pop.6.t: "Fertility is back"
+ french_pop.6.d: "We have solved the crisis of the French birth rate. Our birth rates should soon rise to be on par (or perhaps even higher than) our regional rivals."
+ french_pop.6.a: "A great day!"
+ french_pop.6.f: "Placeholder 6"

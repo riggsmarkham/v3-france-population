@@ -1,0 +1,9 @@
+﻿on_monthly_pulse_country = {
+	events = {
+		french_pop.1
+		french_pop.2
+		french_pop.3
+		french_pop.4
+		french_pop.5
+	}
+}

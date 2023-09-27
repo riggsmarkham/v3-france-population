@@ -1,0 +1,13 @@
+{
+    "name": "French Population Crisis",
+    "id": "com.riggsmarkham.french-pop-mod",
+    "version": "0.1",
+    "game_id": "victoria3",
+    "supported_game_version": "1.*",
+    "short_description": "Adds a journal entry simulating France's population crisis of the 1800s and various efforts to fix it.",
+    "tags": ["france","journal"],
+    "relationships": [],
+    "game_custom_data" : {
+      "multiplayer_synchronized" : true
+    }
+}
