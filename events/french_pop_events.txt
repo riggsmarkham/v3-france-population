@@ -61,9 +61,7 @@ french_pop.2 = {
 		has_variable = french_pop_slowing_unnoticed
 		# just lost a war and french territory
 		AND = {
-			OR = {
-				has_variable = recently_lost_war
-			}
+			has_variable = recently_lost_war
 			any_state = {
 				state_region = { 
 					is_homeland = cu:french
@@ -206,7 +204,6 @@ french_pop.5 = {
 	trigger = {
 		NOT = { this = c:FRA }
 		NOT = { has_variable = already_triggered_removal }
-
 		any_scope_state = {
 			has_modifier = french_pop_mod
 		}
