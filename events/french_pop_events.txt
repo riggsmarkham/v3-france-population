@@ -2,18 +2,16 @@
 
 french_pop.1 = {
 	type = country_event
-	placement = root
 	title = french_pop.1.t
 	desc = french_pop.1.d
 	flavor = french_pop.1.f
+	is_popup = yes
 	
 	event_image = {
-		video = "gfx/event_pictures/unspecific_world_fair.bk2"
+		video = "europenorthamerica_rich_and_poor"
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	
-	on_opened_soundeffect = "event:/SFX/Events/unspecific/world_fair"
 
 	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
 
@@ -28,7 +26,6 @@ french_pop.1 = {
 		name = french_pop.1.a
 		every_scope_state = {
 			limit = {
-				is_incorporated = yes
 				state_region = { 
 					is_homeland = cu:french
 				}
@@ -45,18 +42,16 @@ french_pop.1 = {
 
 french_pop.2 = {
 	type = country_event
-	placement = root
 	title = french_pop.2.t
 	desc = french_pop.2.d
 	flavor = french_pop.2.f
+	is_popup = yes
 	
 	event_image = {
-		video = "gfx/event_pictures/unspecific_world_fair.bk2"
+		video = "unspecific_politicians_arguing"
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	
-	on_opened_soundeffect = "event:/SFX/Events/unspecific/world_fair"
 
 	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
 
@@ -104,18 +99,16 @@ french_pop.2 = {
 
 french_pop.3 = {
 	type = country_event
-	placement = root
 	title = french_pop.3.t
 	desc = french_pop.3.d
 	flavor = french_pop.3.f
+	is_popup = yes
 	
 	event_image = {
-		video = "gfx/event_pictures/unspecific_world_fair.bk2"
+		video = "unspecific_politicians_arguing"
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	
-	on_opened_soundeffect = "event:/SFX/Events/unspecific/world_fair"
 
 	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
 
@@ -145,18 +138,16 @@ french_pop.3 = {
 
 french_pop.4 = {
 	type = country_event
-	placement = root
 	title = french_pop.4.t
 	desc = french_pop.4.d
 	flavor = french_pop.4.f
+	is_popup = yes
 	
 	event_image = {
-		video = "gfx/event_pictures/unspecific_world_fair.bk2"
+		video = "unspecific_politicians_arguing"
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	
-	on_opened_soundeffect = "event:/SFX/Events/unspecific/world_fair"
 
 	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
 
@@ -197,18 +188,16 @@ french_pop.4 = {
 
 french_pop.5 = {
 	type = country_event
-	placement = root
+	placement = scope:formerly_french_state
 	title = french_pop.5.t
 	desc = french_pop.5.d
 	flavor = french_pop.5.f
 	
 	event_image = {
-		video = "gfx/event_pictures/unspecific_world_fair.bk2"
+		video = "unspecific_world_fair"
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	
-	on_opened_soundeffect = "event:/SFX/Events/unspecific/world_fair"
 
 	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
 
@@ -216,10 +205,21 @@ french_pop.5 = {
 
 	trigger = {
 		NOT = { this = c:FRA }
+		NOT = { has_variable = already_triggered_removal }
 
 		any_scope_state = {
 			has_modifier = french_pop_mod
 		}
+	}
+
+	immediate = {
+		random_scope_state = {
+			limit = {
+				has_modifier = french_pop_mod
+			}
+			save_scope_as = formerly_french_state
+		}
+		set_variable = already_triggered_removal
 	}
 	
 	option = {
@@ -228,23 +228,22 @@ french_pop.5 = {
 			limit = { has_modifier = french_pop_mod }
 			remove_modifier = french_pop_mod
 		}
+		remove_variable = already_triggered_removal
 	}
 }
 
 french_pop.6 = {
 	type = country_event
-	placement = root
 	title = french_pop.6.t
 	desc = french_pop.6.d
 	flavor = french_pop.6.f
+	is_popup = yes
 	
 	event_image = {
-		video = "gfx/event_pictures/unspecific_world_fair.bk2"
+		video = "unspecific_world_fair"
 	}
 
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-	
-	on_opened_soundeffect = "event:/SFX/Events/unspecific/world_fair"
 
 	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
 
@@ -255,9 +254,71 @@ french_pop.6 = {
 	
 	option = {
 		name = french_pop.6.a
+		set_variable = french_pop_solved
 		every_scope_state = {
 			limit = { has_modifier = french_pop_mod }
 			remove_modifier = french_pop_mod
 		}
+	}
+}
+
+french_pop.7 = {
+	type = country_event
+	placement = scope:new_french_state
+	title = french_pop.7.t
+	desc = french_pop.7.d
+	flavor = french_pop.7.f
+	
+	event_image = {
+		video = "europenorthamerica_rich_and_poor"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	duration = 3
+
+	trigger = {
+		this = c:FRA
+		has_variable = french_pop_triggered
+		NOT = { has_variable = french_pop_solved }
+		NOT = { has_variable = already_triggered_addition }
+		any_scope_state = {
+			state_region = { 
+				is_homeland = cu:french
+			}
+			NOT = { has_modifier = french_pop_mod }
+		}
+	}
+
+	immediate = {
+		random_scope_state = {
+			limit = {
+				state_region = { 
+					is_homeland = cu:french
+				}
+				NOT = { has_modifier = french_pop_mod }
+			}
+			save_scope_as = new_french_state
+		}
+		set_variable = already_triggered_addition
+	}
+
+	option = { 
+		name = french_pop.7.a
+		every_scope_state = {
+			limit = {
+				state_region = { 
+					is_homeland = cu:french
+				}
+				NOT = { has_modifier = french_pop_mod }
+			}
+			add_modifier = {
+				name = french_pop_mod
+				months = -1
+			}
+		}
+		remove_variable = already_triggered_addition
 	}
 }

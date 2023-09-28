@@ -1,4 +1,4 @@
 ﻿french_pop_mod = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_negative.dds
-	state_accepted_birth_rate_mult = -0.05
+	state_accepted_birth_rate_mult = -0.10
 }

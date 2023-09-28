@@ -5,5 +5,6 @@
 		french_pop.3
 		french_pop.4
 		french_pop.5
+		french_pop.7
 	}
 }
