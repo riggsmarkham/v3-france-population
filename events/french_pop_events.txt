@@ -1,5 +1,6 @@
 ﻿namespace = french_pop
 
+# add modifier to french homelands
 french_pop.1 = {
 	type = country_event
 	title = french_pop.1.t
@@ -40,12 +41,12 @@ french_pop.1 = {
 	}
 }
 
+# journal starting event
 french_pop.2 = {
 	type = country_event
 	title = french_pop.2.t
-	desc = french_pop.2.d
+	desc = french_pop.2.d_2
 	flavor = french_pop.2.f
-	is_popup = yes
 	
 	event_image = {
 		video = "unspecific_politicians_arguing"
@@ -58,138 +59,38 @@ french_pop.2 = {
 	duration = 3
 
 	trigger = {
-		has_variable = french_pop_slowing_unnoticed
-		# just lost a war and french territory
-		AND = {
-			has_variable = recently_lost_war
-			any_state = {
-				state_region = { 
-					is_homeland = cu:french
-				}
-				NOT = {
-					OR = {
-						state_region = s:STATE_SAVOY
-						AND = {
-							state_region = s:STATE_PROVENCE
-							state_region = {
-								any_scope_state = {
-									owner = root
-								}
-							}
-							is_split_state = yes
-						}
-					}
-					owner = root
-				}
-			}
-		}
 	}
 
 	immediate = {
 		remove_variable = french_pop_slowing_unnoticed
 	}
-
+	
 	option = {
 		name = french_pop.2.a
 		add_journal_entry = { type = je_french_pop }
 	}
+	option = {
+		name = french_pop.2.b
+		add_journal_entry = { type = je_french_pop }
+	}
+	option = {
+		name = french_pop.2.c
+		add_journal_entry = { type = je_french_pop }
+	}
+	option = {
+		name = french_pop.2.d
+		default_option = yes
+		add_journal_entry = { type = je_french_pop }
+	}
 }
 
+# remove modifier from non-french state
 french_pop.3 = {
 	type = country_event
+	placement = scope:formerly_french_state
 	title = french_pop.3.t
 	desc = french_pop.3.d
 	flavor = french_pop.3.f
-	is_popup = yes
-	
-	event_image = {
-		video = "unspecific_politicians_arguing"
-	}
-
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-
-	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
-
-	duration = 3
-
-	trigger = {
-		has_variable = french_pop_slowing_unnoticed
-		# smaller population than a western european rival
-		any_country = {
-			has_diplomatic_pact = {
-				who = root
-				type = rivalry
-			}
-			total_population > 1000000
-		}
-	}
-
-	immediate = {
-		remove_variable = french_pop_slowing_unnoticed
-	}
-	
-	option = {
-		name = french_pop.3.a
-		add_journal_entry = { type = je_french_pop }
-	}
-}
-
-french_pop.4 = {
-	type = country_event
-	title = french_pop.4.t
-	desc = french_pop.4.d
-	flavor = french_pop.4.f
-	is_popup = yes
-	
-	event_image = {
-		video = "unspecific_politicians_arguing"
-	}
-
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-
-	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
-
-	duration = 3
-
-	trigger = {
-		has_variable = french_pop_slowing_unnoticed
-		# 1 of the solution conditions
-		OR = {
-			has_law = law_type:law_no_womens_rights
-			has_law = law_type:law_state_religion
-			AND = {
-				has_law = law_type:law_religious_schools
-				has_law = law_type:law_charitable_health_system
-			}
-			has_law = law_type:law_agrarianism
-			has_law = law_type:law_traditionalism
-			ig:ig_devout = {
-				is_powerful = yes
-				is_in_government = yes
-			}
-			institution_investment_level = {
-				institution = institution_social_security
-				value >= 4
-			}
-		}
-	}
-
-	immediate = {
-		remove_variable = french_pop_slowing_unnoticed
-	}
-	
-	option = {
-		name = french_pop.4.a
-		add_journal_entry = { type = je_french_pop }
-	}
-}
-
-french_pop.5 = {
-	type = country_event
-	placement = scope:formerly_french_state
-	title = french_pop.5.t
-	desc = french_pop.5.d
-	flavor = french_pop.5.f
 	
 	event_image = {
 		video = "unspecific_world_fair"
@@ -202,8 +103,10 @@ french_pop.5 = {
 	duration = 3
 
 	trigger = {
-		NOT = { this = c:FRA }
-		NOT = { has_variable = already_triggered_removal }
+		NOR = {
+			this = c:FRA
+			has_variable = already_triggered_removal
+		}
 		any_scope_state = {
 			has_modifier = french_pop_mod
 		}
@@ -220,7 +123,7 @@ french_pop.5 = {
 	}
 	
 	option = {
-		name = french_pop.5.a
+		name = french_pop.3.a
 		every_scope_state = {
 			limit = { has_modifier = french_pop_mod }
 			remove_modifier = french_pop_mod
@@ -229,42 +132,13 @@ french_pop.5 = {
 	}
 }
 
-french_pop.6 = {
-	type = country_event
-	title = french_pop.6.t
-	desc = french_pop.6.d
-	flavor = french_pop.6.f
-	is_popup = yes
-	
-	event_image = {
-		video = "unspecific_world_fair"
-	}
-
-	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-
-	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
-
-	duration = 3
-
-	trigger = {
-	}
-	
-	option = {
-		name = french_pop.6.a
-		set_variable = french_pop_solved
-		every_scope_state = {
-			limit = { has_modifier = french_pop_mod }
-			remove_modifier = french_pop_mod
-		}
-	}
-}
-
-french_pop.7 = {
+# adding modifier to newly french state
+french_pop.4 = {
 	type = country_event
 	placement = scope:new_french_state
-	title = french_pop.7.t
-	desc = french_pop.7.d
-	flavor = french_pop.7.f
+	title = french_pop.4.t
+	desc = french_pop.4.d
+	flavor = french_pop.4.f
 	
 	event_image = {
 		video = "europenorthamerica_rich_and_poor"
@@ -279,8 +153,10 @@ french_pop.7 = {
 	trigger = {
 		this = c:FRA
 		has_variable = french_pop_triggered
-		NOT = { has_variable = french_pop_solved }
-		NOT = { has_variable = already_triggered_addition }
+		NOR = { 
+			has_variable = french_pop_solved
+			has_variable = already_triggered_addition
+		}
 		any_scope_state = {
 			state_region = { 
 				is_homeland = cu:french
@@ -303,7 +179,7 @@ french_pop.7 = {
 	}
 
 	option = { 
-		name = french_pop.7.a
+		name = french_pop.4.a
 		every_scope_state = {
 			limit = {
 				state_region = { 
@@ -317,5 +193,36 @@ french_pop.7 = {
 			}
 		}
 		remove_variable = already_triggered_addition
+	}
+}
+
+# remove modifier from all french states (end of je)
+french_pop.5 = {
+	type = country_event
+	title = french_pop.5.t
+	desc = french_pop.5.d
+	flavor = french_pop.5.f
+	is_popup = yes
+	
+	event_image = {
+		video = "unspecific_world_fair"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+
+	icon = "gfx/interface/icons/event_icons/event_portrait.dds"
+
+	duration = 3
+
+	trigger = {
+	}
+	
+	option = {
+		name = french_pop.5.a
+		set_variable = french_pop_solved
+		every_scope_state = {
+			limit = { has_modifier = french_pop_mod }
+			remove_modifier = french_pop_mod
+		}
 	}
 }
